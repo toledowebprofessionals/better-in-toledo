@@ -28,7 +28,7 @@ The original mark remains the expressive element. Supporting design uses Barlow 
 - [Astro](https://astro.build) for statically generated HTML
 - [Tailwind CSS](https://tailwindcss.com) for utility styling and brand tokens
 - Astro’s asset pipeline for responsive and optimized imagery
-- [Netlify](https://www.netlify.com) for deployment
+- [GitHub Pages](https://pages.github.com) for hosting and deployment
 
 The site intentionally avoids a client-side application framework. JavaScript is added only where an interaction requires it, and the primary content remains useful as rendered HTML.
 
@@ -53,6 +53,16 @@ Open [http://localhost:4321](http://localhost:4321).
 | `npm run build` | Generate the production site in `dist/` |
 | `npm run preview` | Preview the production build locally |
 | `npm run format` | Format Astro files with Prettier |
+
+## Deployment
+
+Pushes to `main` are built and deployed to GitHub Pages by
+`.github/workflows/deploy.yml`. The workflow installs the locked dependencies, builds the static
+site into `dist/`, and publishes that artifact through GitHub Pages.
+
+In the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**.
+The production custom domain is `betterintoledo.com` and is also configured as Astro’s canonical
+site URL.
 
 ## Project structure
 

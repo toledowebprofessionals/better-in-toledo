@@ -10,7 +10,7 @@ Project: You Will Do Better in Toledo
 Website: https://betterintoledo.com
 Purpose: An open-source, public-domain brand resource for a modern Toledo.
 Technology: Astro, Tailwind CSS, HTML, CSS, JavaScript
-Hosting: Netlify
+Hosting: GitHub Pages
 Language: English
 License: CC0 1.0 Universal, except where otherwise credited
 

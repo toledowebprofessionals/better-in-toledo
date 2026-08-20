@@ -13,7 +13,7 @@ This repository contains the public brand resource website for “You Will Do Be
 
 ## Stack
 
-- Astro, rendered as static HTML for Netlify
+- Astro, rendered as static HTML for GitHub Pages
 - Tailwind CSS
 - Astro assets for image optimization
 - No client framework unless an interaction genuinely requires one

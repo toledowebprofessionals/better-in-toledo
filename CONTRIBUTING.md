@@ -61,7 +61,7 @@ This project requires Node.js 22.12 or newer.
 
 ## Technical expectations
 
-- Keep the site statically rendered with Astro and suitable for Netlify.
+- Keep the site statically rendered with Astro and suitable for GitHub Pages.
 - Prefer semantic HTML and CSS over client-side abstractions.
 - Do not add React or another framework unless an interaction genuinely requires it.
 - Keep client-side JavaScript small and progressively enhanced.
