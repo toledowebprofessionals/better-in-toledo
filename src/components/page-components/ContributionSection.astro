@@ -24,7 +24,7 @@ const {
 
 <section class="relative overflow-hidden bg-glass-blue px-5 py-20 text-sign-black md:px-8 md:py-32">
 	<div
-		class="pointer-events-none absolute inset-0 bg-[length:720px_auto] bg-repeat opacity-[0.04]"
+		class="contribution-grid pointer-events-none absolute inset-0 bg-repeat opacity-[0.04]"
 		style={`background-image: url("${backgroundPatternSrc}")`}
 	>
 	</div>
@@ -58,3 +58,23 @@ const {
 		</div>
 	</div>
 </section>
+
+<style>
+	.contribution-grid {
+		background-size: 720px auto;
+		animation: drift-grid 32s linear infinite;
+		will-change: background-position;
+	}
+
+	@keyframes drift-grid {
+		to {
+			background-position: 720px 720px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.contribution-grid {
+			animation: none;
+		}
+	}
+</style>
