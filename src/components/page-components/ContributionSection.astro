@@ -28,6 +28,7 @@ const {
 		style={`background-image: url("${backgroundPatternSrc}")`}
 	>
 	</div>
+	<div class="contribution-sheen pointer-events-none absolute inset-0" aria-hidden="true"></div>
 	<div class="relative mx-auto max-w-[1600px]">
 		<div
 			class="flex flex-col items-start gap-1 border-t border-sign-black/60 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] md:flex-row md:items-center md:justify-between md:gap-6 md:text-xs"
@@ -64,6 +65,19 @@ const {
 		background-size: 720px auto;
 		animation: drift-grid 32s linear infinite;
 		will-change: background-position;
+	}
+	.contribution-sheen {
+		opacity: 0.45;
+		background: radial-gradient(
+			ellipse 125% 145% at -25% 125%,
+			transparent 0 64%,
+			rgb(255 255 255 / 36%) 64.15%,
+			rgb(255 255 255 / 18%) 68%,
+			rgb(255 255 255 / 7%) 76%,
+			transparent 90%
+		);
+		-webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 100%);
+		mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 100%);
 	}
 
 	@keyframes drift-grid {
