@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PhotographyIntroduction from '../../components/page-components/PhotographyIntroduction.astro';
+import PhotographyGallery from '../../components/page-components/PhotographyGallery.astro';
+import PhotographyContributionSection from '../../components/page-components/PhotographyContributionSection.astro';
+import unilluminatedPreview from '../../assets/images/sign/better-in-toledo-sign.jpg';
+import unilluminatedDownload from '../../assets/images/sign/better-in-toledo-sign.jpg?url';
+import sequencePreview from '../../assets/images/sign/you-will-do-better-combo.jpg';
+import sequenceDownload from '../../assets/images/sign/you-will-do-better-combo.jpg?url';
+import illuminatedPreview from '../../assets/images/sign/you-will-do-better-illuminated.jpg';
+import illuminatedDownload from '../../assets/images/sign/you-will-do-better-illuminated.jpg?url';
+import shipPreview from '../../assets/images/sign/you-will-do-better-ship.jpg';
+import shipDownload from '../../assets/images/sign/you-will-do-better-ship.jpg?url';
+import trainPreview from '../../assets/images/sign/you-will-do-better-train.jpg';
+import trainDownload from '../../assets/images/sign/you-will-do-better-train.jpg?url';
+
+const title = 'Public Domain Toledo Photography • You Will Do Better in Toledo';
+const description =
+	'Browse and download public domain photography of Toledo for your own projects, or contribute your own images to the growing CC0 photo archive.';
+
+const photographs = [
+	{
+		title: 'The unilluminated sign',
+		file: 'better-in-toledo-sign.jpg',
+		preview: unilluminatedPreview,
+		downloadHref: unilluminatedDownload,
+		width: 2387,
+		height: 1523,
+		source:
+			'https://picryl.com/media/you-will-do-better-in-toledo-billboard-toledo-ohio-dpla-62d46d90ac402c7dd240d05090a6d6e9-62ce26',
+		sourceTitle: 'Ken Levin Toledo Postcard Collection',
+		contributor: 'Toledo Lucas County Public Library',
+		description:
+			'A daylight view of the original rooftop sign and its exposed steel framework above Toledo’s Valentine Building.',
+		license: 'No Copyright, Public Domain, United States',
+		copyrightNotice: 'Copyright status outside the United States has not been evaluated.',
+	},
+	{
+		title: 'The complete light sequence',
+		file: 'you-will-do-better-combo.jpg',
+		preview: sequencePreview,
+		downloadHref: sequenceDownload,
+		width: 1503,
+		height: 2369,
+		source:
+			'https://picryl.com/media/you-will-do-better-in-toledo-billboard-toledo-ohio-dpla-a8f737d81005c9712eb8e1a466b7b4a4-9c5483',
+		sourceTitle: 'Ken Levin Toledo Postcard Collection',
+		contributor: 'Toledo Lucas County Public Library',
+		description:
+			'A postcard composition showing the illuminated locomotive, slogan, and lake freighter displays that alternated across the sign’s thousands of bulbs.',
+		license: 'No Copyright, Public Domain, United States',
+		copyrightNotice: 'Copyright status outside the United States has not been evaluated.',
+	},
+	{
+		title: 'The illuminated slogan',
+		file: 'you-will-do-better-illuminated.jpg',
+		preview: illuminatedPreview,
+		downloadHref: illuminatedDownload,
+		width: 2346,
+		height: 1537,
+		source:
+			'https://picryl.com/media/you-will-do-better-in-toledo-billboard-and-the-toledoans-creed-toledo-ohio-69ad12',
+		sourceTitle: 'Ken Levin Toledo Postcard Collection',
+		contributor: 'Toledo Lucas County Public Library',
+		description:
+			'The “You will do better in Toledo” message rendered as a field of yellow and orange electric bulbs against the night sky.',
+		license: 'No Copyright, Public Domain, United States',
+		copyrightNotice: 'Copyright status outside the United States has not been evaluated.',
+	},
+	{
+		title: 'The lake freighter',
+		file: 'you-will-do-better-ship.jpg',
+		preview: shipPreview,
+		downloadHref: shipDownload,
+		width: 2287,
+		height: 1561,
+		source:
+			'https://picryl.com/media/you-will-do-better-in-toledo-billboard-and-the-toledoans-creed-toledo-ohio-4326fb',
+		sourceTitle: 'Ken Levin Toledo Postcard Collection',
+		contributor: 'Toledo Lucas County Public Library',
+		description:
+			'The sign’s animated lake-freighter display, connecting Toledo’s civic message to the Maumee River, the Great Lakes, and the city’s working waterfront.',
+		license: 'No Copyright, Public Domain, United States',
+		copyrightNotice: 'Copyright status outside the United States has not been evaluated.',
+	},
+	{
+		title: 'The railroad locomotive',
+		file: 'you-will-do-better-train.jpg',
+		preview: trainPreview,
+		downloadHref: trainDownload,
+		width: 3130,
+		height: 2140,
+		source:
+			'https://picryl.com/media/you-will-do-better-in-toledo-billboard-and-the-toledoans-creed-toledo-ohio-2d431a',
+		sourceTitle: 'Ken Levin Toledo Postcard Collection',
+		contributor: 'Toledo Lucas County Public Library',
+		description:
+			'The sign’s animated locomotive display, built from colored bulbs to depict a train moving through the dark.',
+		license: 'No Copyright, Public Domain, United States',
+		copyrightNotice: 'Copyright status outside the United States has not been evaluated.',
+	},
+];
+
+const introduction = {
+	pageLabel: 'Photography / Archive',
+	description:
+		'The images in this archive are public-domain resources, available to download and use for free with no royalties or attribution required. Open any image for complete source and rights information.',
+	ctaLabel: 'Contribute your own photography',
+	ctaHref: 'mailto:contribute@betterintoledo.com?subject=Photography%20contribution',
+};
+
+const photographyContribution = {
+	sectionLabel: 'Open call / Toledo photography',
+	headline: 'Show us the city you see.',
+	paragraphs: [
+		'Toledo deserves an archive made by the people who know it. Send us the storefronts, workers, porches, bridges, signs, factories, neighborhoods, ordinary moments, and strange details you have photographed here.',
+		'That keeps the archive free for everyone to download, publish, adapt, and carry forward without permission or attribution.',
+	],
+	licenseLabel: 'CC0 1.0',
+	licenseHref: '/license/',
+	ctaLabel: 'Email your photographs',
+	ctaHref: 'mailto:contribute@betterintoledo.com?subject=Photography%20contribution',
+};
+---
+
+<BaseLayout {title} {description}>
+	<main id="main-content" class="photography-page" tabindex="-1">
+		<PhotographyIntroduction {...introduction} />
+		<PhotographyGallery {photographs} />
+		<PhotographyContributionSection {...photographyContribution} />
+	</main>
+</BaseLayout>
+
+<style>
+	:global(body) {
+		background: #faf9f5;
+	}
+	.photography-page {
+		padding: clamp(3rem, 6vw, 6rem) clamp(1.25rem, 2vw, 2rem) clamp(4rem, 7vw, 7rem);
+		background: #faf9f5;
+	}
+</style>

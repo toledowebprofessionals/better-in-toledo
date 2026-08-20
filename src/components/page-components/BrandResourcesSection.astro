@@ -1,0 +1,66 @@
+---
+interface Resource {
+	number: string;
+	title: string;
+	detail: string;
+	href: string;
+}
+
+interface Props {
+	anchorId: string;
+	sectionLabel: string;
+	headlineLines: string[];
+	description: string;
+	resources: Resource[];
+}
+
+const { anchorId, sectionLabel, headlineLines, description, resources } = Astro.props;
+---
+
+<section id={anchorId} class="bg-paper-white px-5 py-20 md:px-8 md:py-32">
+	<div class="mx-auto max-w-[1600px]">
+		<div class="border-t border-sign-black pt-3">
+			<p class="text-right font-mono text-[10px] uppercase tracking-[0.12em] md:text-xs">
+				{sectionLabel}
+			</p>
+			<div class="mt-8 md:-mt-1">
+				<h2
+					class="font-display text-6xl font-extrabold uppercase leading-[0.84] tracking-[-0.04em] md:text-[clamp(5rem,9vw,9rem)]"
+				>
+					{
+						headlineLines.map((line, index) => (
+							<>
+								{index > 0 && <br />}
+								{line}
+							</>
+						))
+					}
+				</h2>
+				<p class="mt-8 max-w-xl text-lg leading-relaxed md:text-xl">{description}</p>
+			</div>
+		</div>
+
+		<div class="mt-16 border-t border-sign-black md:mt-24">
+			{
+				resources.map((resource) => (
+					<a
+						href={resource.href}
+						class="group relative grid gap-5 border-b border-sign-black px-0 py-6 transition-[padding,background-color,color] duration-300 ease-out hover:bg-sign-black hover:px-5 hover:text-paper-white motion-reduce:transition-none md:grid-cols-12 md:items-center md:py-8"
+					>
+						<span class="font-mono text-xs md:col-span-1">{resource.number}</span>
+						<h3 class="font-display text-4xl font-bold uppercase md:col-span-4 md:text-6xl">
+							{resource.title}
+						</h3>
+						<p class="max-w-md pr-14 leading-relaxed md:col-span-5 md:pr-0">{resource.detail}</p>
+						<span
+							class="absolute bottom-6 right-5 text-right text-3xl transition-transform duration-300 ease-out motion-reduce:transition-none md:static md:col-span-2 md:group-hover:translate-x-2"
+							aria-hidden="true"
+						>
+							→
+						</span>
+					</a>
+				))
+			}
+		</div>
+	</div>
+</section>

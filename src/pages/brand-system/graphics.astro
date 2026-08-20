@@ -1,0 +1,41 @@
+---
+import BrandSystemLayout from '../../layouts/BrandSystemLayout.astro';
+import BrandPageIntroduction from '../../components/brand-system/BrandPageIntroduction.astro';
+import GraphicElement from '../../components/brand-system/GraphicElement.astro';
+import standaloneGridUrl from '../../assets/images/graphic-elements/structural-grid-standalone.svg?url';
+import tileableGridUrl from '../../assets/images/graphic-elements/structural-grid.svg?url';
+
+const title = 'Graphic Elements • You Will Do Better in Toledo';
+const description =
+	'Explore and download patterns, illustrations, and supporting graphic elements for the public domain You Will Do Better in Toledo brand system.';
+const introduction = {
+	label: '04 / Graphics',
+	description:
+		'Graphic elements give the brand a recognizable visual language beyond the logo. Use them to add structure, texture, and a sense of place while keeping the message clear and the primary mark in command.',
+};
+const grid = {
+	name: 'Structural grid',
+	description:
+		'Use the grid as a quiet supporting element at approximately 5–15% opacity. The tileable artwork is designed for repeating fields and large backgrounds. The standalone artwork has complete edges and connection points for contained compositions.',
+	previewSrc: standaloneGridUrl,
+	previewAlt:
+		'Structural grid made from rectangular bays, diagonal bracing, and circular connection points',
+	downloads: [
+		{
+			label: 'Download tileable SVG',
+			href: tileableGridUrl,
+			filename: 'structural-grid.svg',
+		},
+		{
+			label: 'Download standalone SVG',
+			href: standaloneGridUrl,
+			filename: 'structural-grid-standalone.svg',
+		},
+	],
+};
+---
+
+<BrandSystemLayout {title} {description}>
+	<BrandPageIntroduction {...introduction} />
+	<GraphicElement {...grid} />
+</BrandSystemLayout>

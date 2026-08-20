@@ -1,0 +1,87 @@
+---
+import BrandSystemLayout from '../../layouts/BrandSystemLayout.astro';
+import BrandPageIntroduction from '../../components/brand-system/BrandPageIntroduction.astro';
+import ColorPalette from '../../components/brand-system/ColorPalette.astro';
+
+const title = 'Brand Colors • You Will Do Better in Toledo';
+const description =
+	'Explore the color palette, specifications, and production values used throughout the public domain You Will Do Better in Toledo brand system.';
+const introduction = {
+	label: '02 / Colors',
+	description:
+		'The palette stays overwhelmingly black and white, grounded by colors drawn from glass, water, foundries, and steel. Use the accents deliberately. The identity should feel direct before it feels colorful.',
+};
+const colors = [
+	{
+		name: 'Sign Black',
+		hex: '#161616',
+		role: 'Primary background and high-contrast field.',
+		tones: [0, 0.12, 0.24, 0.38, 0.54, 0.72, 0.88],
+	},
+	{
+		name: 'Paper White',
+		hex: '#F4F1E8',
+		role: 'Primary light field and warm alternative to pure white.',
+		tones: [0, -0.16, -0.08, 0.5, 1],
+	},
+	{
+		name: 'Glass Blue',
+		hex: '#6EBAC4',
+		role: 'Signature Toledo accent inspired by the Glass City.',
+		tones: [0, -0.35, -0.18, 0.2, 0.4],
+	},
+	{
+		name: 'Maumee Blue',
+		hex: '#204E63',
+		role: 'Secondary institutional color and deep cool field.',
+		tones: [0, -0.3, -0.15, 0.18, 0.36, 0.55],
+	},
+	{
+		name: 'Foundry Orange',
+		hex: '#D96832',
+		role: 'Warm accent for emphasis, actions, and moments of energy.',
+		tones: [0, -0.3, -0.15, 0.2, 0.4],
+	},
+	{
+		name: 'Steel Gray',
+		hex: '#858585',
+		role: 'Utility color for secondary text, rules, and supporting detail.',
+		tones: [0, -0.35, -0.18, 0.22, 0.44],
+	},
+];
+const hexToRgb = (hex: string) =>
+	[0, 2, 4].map((offset) => parseInt(hex.replace('#', '').slice(offset, offset + 2), 16));
+const rgbToHex = (rgb: number[]) =>
+	`#${rgb
+		.map((value) => Math.round(value).toString(16).padStart(2, '0'))
+		.join('')
+		.toUpperCase()}`;
+const mixTone = (hex: string, amount: number) =>
+	rgbToHex(
+		hexToRgb(hex).map((value) => value + ((amount < 0 ? 0 : 255) - value) * Math.abs(amount)),
+	);
+const colorValues = (hex: string) => {
+	const [r, g, b] = hexToRgb(hex);
+	const k = 1 - Math.max(r, g, b) / 255;
+	const divisor = 1 - k;
+	const c = divisor === 0 ? 0 : (1 - r / 255 - k) / divisor;
+	const m = divisor === 0 ? 0 : (1 - g / 255 - k) / divisor;
+	const y = divisor === 0 ? 0 : (1 - b / 255 - k) / divisor;
+	return {
+		hex,
+		rgb: `${r} / ${g} / ${b}`,
+		cmyk: `${Math.round(c * 100)} / ${Math.round(m * 100)} / ${Math.round(y * 100)} / ${Math.round(k * 100)}`,
+		lightText: (r * 299 + g * 587 + b * 114) / 1000 < 145,
+	};
+};
+const palette = colors.map((color) => ({
+	...color,
+	variants: color.tones.map((tone) => colorValues(mixTone(color.hex, tone))),
+	base: colorValues(color.hex),
+}));
+---
+
+<BrandSystemLayout {title} {description}>
+	<BrandPageIntroduction {...introduction} />
+	<ColorPalette {palette} />
+</BrandSystemLayout>

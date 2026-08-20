@@ -1,0 +1,57 @@
+---
+import BrandSystemLayout from '../../layouts/BrandSystemLayout.astro';
+import BrandPageIntroduction from '../../components/brand-system/BrandPageIntroduction.astro';
+import TypographySystem from '../../components/brand-system/TypographySystem.astro';
+
+const title = 'Typography • You Will Do Better in Toledo';
+const description =
+	'Explore the typefaces, hierarchy, styles, and typography standards used throughout the You Will Do Better in Toledo public domain brand system.';
+const introduction = {
+	label: '03 / Typography',
+	description:
+		'The logo carries the irregular character. Supporting typography stays disciplined: condensed and forceful for display, clear and durable for reading, and precise for the small details that hold the system together.',
+};
+const typefaces = [
+	{
+		kind: 'display' as const,
+		name: 'Barlow Condensed',
+		purpose: 'Display',
+		sample: 'Toledo builds.',
+		weights: 'Bold + Black',
+		description:
+			'Use for headlines, posters, dates, neighborhood names, and calls to action. Uppercase is encouraged. Keep leading tight and let the words become architecture.',
+		downloadUrl: 'https://fonts.google.com/specimen/Barlow%2BCondensed',
+		licenseUrl: 'https://github.com/google/fonts/blob/main/ofl/barlowcondensed/OFL.txt',
+		characters: ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', '0123456789 .,:;!?&'],
+	},
+	{
+		kind: 'body' as const,
+		name: 'IBM Plex Sans',
+		purpose: 'Body',
+		sample: 'A city of makers, builders, neighbors, and believers.',
+		weights: 'Regular + Medium',
+		description:
+			'Use for paragraphs, captions, instructions, interfaces, and supporting information. Give it comfortable line spacing and keep measure short enough to read without effort.',
+		downloadUrl: 'https://fonts.google.com/specimen/IBM%2BPlex%2BSans',
+		licenseUrl: 'https://github.com/google/fonts/blob/main/ofl/ibmplexsans/OFL.txt',
+		characters: ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz', '0123456789 .,:;!?&'],
+	},
+	{
+		kind: 'mono' as const,
+		name: 'IBM Plex Mono',
+		purpose: 'Utility',
+		sample: '41.6639° N / 83.5552° W',
+		weights: 'Medium',
+		description:
+			'Use sparingly for addresses, coordinates, dates, statistics, wayfinding codes, archival captions, and system labels. It should feel factual, not decorative.',
+		downloadUrl: 'https://fonts.google.com/specimen/IBM%2BPlex%2BMono',
+		licenseUrl: 'https://github.com/google/fonts/blob/main/ofl/ibmplexmono/OFL.txt',
+		characters: ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz', '0123456789 .,:;!?&'],
+	},
+];
+---
+
+<BrandSystemLayout {title} {description}>
+	<BrandPageIntroduction {...introduction} />
+	<TypographySystem {typefaces} />
+</BrandSystemLayout>

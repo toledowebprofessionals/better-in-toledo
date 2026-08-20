@@ -1,0 +1,222 @@
+---
+interface Typeface {
+	kind: 'display' | 'body' | 'mono';
+	name: string;
+	purpose: string;
+	sample: string;
+	weights: string;
+	description: string;
+	downloadUrl: string;
+	licenseUrl: string;
+	characters: string[];
+}
+interface Props {
+	typefaces: Typeface[];
+}
+const { typefaces } = Astro.props;
+---
+
+<div class="type-system">
+	{
+		typefaces.map((typeface) => (
+			<article class:list={['type-specimen', `type-specimen--${typeface.kind}`]}>
+				<header>
+					<>
+						<span>{typeface.name}</span>
+						<span>{typeface.purpose}</span>
+					</>
+				</header>
+				<p class="type-specimen__sample">{typeface.sample}</p>
+				<div class="type-specimen__details">
+					<div>
+						<>
+							<h2>
+								{typeface.name} / {typeface.weights}
+							</h2>
+							<p>{typeface.description}</p>
+							<a
+								class="font-download"
+								href={typeface.downloadUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<span class="button-label">Download from Google Fonts</span>
+								<span class="button-icon" aria-hidden="true">
+									↗
+								</span>
+							</a>
+							<a
+								class="font-license"
+								href={typeface.licenseUrl}
+								target="_blank"
+								rel="license noopener noreferrer"
+							>
+								SIL Open Font License 1.1 <span aria-hidden="true">↗</span>
+							</a>
+						</>
+					</div>
+					<p class="type-specimen__characters">
+						{typeface.characters.map((line, index) => (
+							<>
+								{index > 0 && <br />}
+								{line}
+							</>
+						))}
+					</p>
+				</div>
+			</article>
+		))
+	}
+</div>
+
+<style>
+	.type-system {
+		margin-top: clamp(2rem, 3vw, 3rem);
+		border-top: 1px solid #161616;
+	}
+	.type-specimen {
+		border-bottom: 1px solid #161616;
+		padding-block: clamp(2rem, 5vw, 5rem);
+	}
+	.type-specimen:last-child {
+		border-bottom: 0;
+	}
+	.type-specimen header {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.35rem;
+		margin-bottom: clamp(2rem, 4vw, 4rem);
+		font-family: var(--font-mono);
+		font-size: 0.65rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+	.type-specimen__sample {
+		overflow-wrap: anywhere;
+		padding: clamp(1.5rem, 4vw, 4rem);
+		background: #161616;
+		color: #f4f1e8;
+	}
+	.type-specimen--display .type-specimen__sample {
+		font-family: var(--font-display);
+		font-size: clamp(3.5rem, 8vw, 8rem);
+		font-weight: 800;
+		line-height: 0.78;
+		letter-spacing: 0.01em;
+		text-transform: uppercase;
+	}
+	.type-specimen--body .type-specimen__sample {
+		font-family: var(--font-sans);
+		font-size: clamp(2rem, 4vw, 4rem);
+		font-weight: 450;
+		line-height: 1.08;
+		letter-spacing: -0.025em;
+	}
+	.type-specimen--mono .type-specimen__sample {
+		font-family: var(--font-mono);
+		font-size: clamp(1.25rem, 3vw, 3rem);
+		font-weight: 500;
+		line-height: 1.2;
+		letter-spacing: -0.03em;
+	}
+	.type-specimen__details {
+		display: grid;
+		gap: 2.5rem;
+		margin-top: clamp(3rem, 6vw, 6rem);
+	}
+	.type-specimen__details h2 {
+		margin-bottom: 1rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+		font-weight: 700;
+		line-height: 0.95;
+		text-transform: uppercase;
+	}
+	.type-specimen__details p:not(.type-specimen__characters) {
+		max-width: 37rem;
+		font-size: 1.05rem;
+		line-height: 1.65;
+	}
+	.font-download {
+		display: flex;
+		width: max-content;
+		max-width: 100%;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 2rem;
+		border: 1px solid #161616;
+		padding: 0.9rem 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		transition:
+			background-color 0.2s,
+			color 0.2s;
+	}
+	.font-download .button-label {
+		white-space: nowrap;
+	}
+	.font-download:hover {
+		background: #161616;
+		color: #f4f1e8;
+	}
+	.font-download span {
+		font-size: 1rem;
+		transition: transform 0.2s ease;
+	}
+	.font-download:hover span {
+		transform: translate(0.2rem, -0.2rem);
+	}
+	.font-license {
+		display: inline-flex;
+		gap: 0.5rem;
+		margin-top: 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.65rem;
+		letter-spacing: 0.06em;
+		text-decoration: underline;
+		text-underline-offset: 0.25em;
+		text-transform: uppercase;
+		transition: color 0.2s;
+	}
+	.font-license:hover {
+		color: #204e63;
+	}
+	.type-specimen__characters {
+		align-self: start;
+		font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+		line-height: 1.7;
+		letter-spacing: 0.06em;
+		overflow-wrap: anywhere;
+	}
+	.type-specimen--display .type-specimen__characters {
+		font-family: var(--font-display);
+		font-weight: 700;
+	}
+	.type-specimen--body .type-specimen__characters {
+		font-family: var(--font-sans);
+	}
+	.type-specimen--mono .type-specimen__characters {
+		font-family: var(--font-mono);
+	}
+	@media (min-width: 900px) {
+		.type-specimen header {
+			flex-direction: row;
+			justify-content: space-between;
+			gap: 2rem;
+		}
+		.type-specimen__details {
+			grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
+		}
+	}
+	@media (max-width: 420px) {
+		.font-download {
+			width: 100%;
+		}
+		.font-download .button-label {
+			white-space: normal;
+		}
+	}
+</style>

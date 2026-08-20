@@ -1,0 +1,100 @@
+---
+const navigation = [
+	{ number: '01', title: 'Brand mark', href: '/brand-system/brand-mark/' },
+	{ number: '02', title: 'Colors', href: '/brand-system/colors/' },
+	{ number: '03', title: 'Typography', href: '/brand-system/typography/' },
+	{ number: '04', title: 'Graphics', href: '/brand-system/graphics/' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<aside class="side-navigation">
+	<div class="side-navigation__inner">
+		<p>Brand system</p>
+		<nav aria-label="Brand system sections">
+			{
+				navigation.map((item) => (
+					<a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>
+						<>
+							<span>{item.number}</span>
+							<span>{item.title}</span>
+						</>
+					</a>
+				))
+			}
+		</nav>
+	</div>
+</aside>
+
+<style>
+	.side-navigation {
+		color: #f4f1e8;
+	}
+	.side-navigation__inner {
+		padding: 1.5rem 1.25rem;
+		background: #161616;
+	}
+	.side-navigation p {
+		margin-bottom: 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: rgb(244 241 232 / 55%);
+	}
+	.side-navigation a {
+		display: grid;
+		grid-template-columns: 2.25rem 1fr;
+		gap: 0.75rem;
+		border-top: 1px solid rgb(244 241 232 / 30%);
+		padding-block: 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		transition: color 0.2s;
+	}
+	.side-navigation a:last-child {
+		padding-bottom: 0;
+	}
+	.side-navigation a:hover,
+	.side-navigation a[aria-current='page'] {
+		color: #d96832;
+	}
+
+	@media (min-width: 900px) {
+		.side-navigation {
+			position: sticky;
+			top: 2rem;
+		}
+		.side-navigation__inner {
+			padding: 2rem;
+		}
+	}
+
+	@media (max-width: 899px) {
+		.side-navigation {
+			position: sticky;
+			top: 0;
+			z-index: 10;
+			margin-inline: -1.25rem;
+		}
+		.side-navigation__inner {
+			padding-block: 1rem;
+		}
+		.side-navigation p {
+			display: none;
+		}
+		.side-navigation nav {
+			display: flex;
+			gap: 1.5rem;
+			overflow-x: auto;
+		}
+		.side-navigation a {
+			min-width: max-content;
+			border-top: 0;
+			padding-block: 0.5rem;
+		}
+	}
+</style>

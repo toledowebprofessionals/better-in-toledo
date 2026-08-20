@@ -1,0 +1,60 @@
+---
+interface Props {
+	sectionLabel: string;
+	contextLabel: string;
+	backgroundPatternSrc: string;
+	headline: string;
+	headlineAccent: string;
+	description: string;
+	ctaLabel: string;
+	ctaHref: string;
+}
+
+const {
+	sectionLabel,
+	contextLabel,
+	backgroundPatternSrc,
+	headline,
+	headlineAccent,
+	description,
+	ctaLabel,
+	ctaHref,
+} = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-glass-blue px-5 py-20 text-sign-black md:px-8 md:py-32">
+	<div
+		class="pointer-events-none absolute inset-0 bg-[length:720px_auto] bg-repeat opacity-[0.04]"
+		style={`background-image: url("${backgroundPatternSrc}")`}
+	>
+	</div>
+	<div class="relative mx-auto max-w-[1600px]">
+		<div
+			class="flex flex-col items-start gap-1 border-t border-sign-black/60 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] md:flex-row md:items-center md:justify-between md:gap-6 md:text-xs"
+		>
+			<span>{sectionLabel}</span>
+			<span>{contextLabel}</span>
+		</div>
+
+		<div class="mt-16 grid gap-12 md:mt-24 md:grid-cols-12 md:items-start md:gap-8">
+			<h2
+				class="font-display text-[clamp(3.75rem,9vw,9rem)] font-extrabold uppercase leading-[0.82] tracking-[-0.04em] md:col-span-7"
+			>
+				{headline}<br /><span class="whitespace-nowrap">{headlineAccent}</span>
+			</h2>
+			<div class="md:col-span-4 md:col-start-9">
+				<p class="max-w-xl text-lg leading-relaxed md:text-xl">{description}</p>
+				<a
+					href={ctaHref}
+					class="group mt-10 flex items-center justify-between border border-sign-black px-5 py-4 font-mono text-xs uppercase tracking-[0.12em] transition-colors duration-300 ease-out hover:bg-sign-black hover:text-paper-white"
+				>
+					<span class="button-label">{ctaLabel}</span>
+					<span
+						class="button-icon text-lg transition-transform duration-300 ease-out group-hover:translate-x-1"
+						aria-hidden="true">→</span
+					>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>

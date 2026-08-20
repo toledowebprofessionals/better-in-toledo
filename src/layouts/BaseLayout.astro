@@ -1,0 +1,107 @@
+---
+import '../styles/global.css';
+import barlowCondensed800 from '@fontsource/barlow-condensed/files/barlow-condensed-latin-800-normal.woff2?url';
+import ibmPlexSans from '@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-normal.woff2?url';
+import ibmPlexMono500 from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2?url';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { getImage } from 'astro:assets';
+import openGraphSource from '../assets/images/sign/better-in-toledo-sign.jpg';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+const openGraphImage = await getImage({
+	src: openGraphSource,
+	width: 1200,
+	format: 'jpg',
+	quality: 72,
+});
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const openGraphImageUrl = new URL(openGraphImage.src, Astro.site ?? Astro.url.origin);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#161616" />
+		<link rel="canonical" href={canonicalUrl} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="author" href="/humans.txt" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link
+			rel="preload"
+			href={barlowCondensed800}
+			as="font"
+			type="font/woff2"
+			crossorigin="anonymous"
+		/>
+		<link rel="preload" href={ibmPlexSans} as="font" type="font/woff2" crossorigin="anonymous" />
+		<link rel="preload" href={ibmPlexMono500} as="font" type="font/woff2" crossorigin="anonymous" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:site_name" content="You Will Do Better in Toledo" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:image" content={openGraphImageUrl} />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content={openGraphImage.attributes.width} />
+		<meta property="og:image:height" content={openGraphImage.attributes.height} />
+		<meta
+			property="og:image:alt"
+			content="The original unilluminated You Will Do Better in Toledo rooftop sign"
+		/>
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={openGraphImageUrl} />
+		<meta
+			name="twitter:image:alt"
+			content="The original unilluminated You Will Do Better in Toledo rooftop sign"
+		/>
+		<!-- Google Tag Manager -->
+		<script is:inline>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != 'dataLayer' ? '&l=' + l : '';
+				j.async = true;
+				j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, 'script', 'dataLayer', 'GTM-PTWPRKW6');
+		</script>
+		<!-- End Google Tag Manager -->
+		<title>{title}</title>
+	</head>
+	<body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript>
+			<iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-PTWPRKW6"
+				height="0"
+				width="0"
+				style="display:none;visibility:hidden"
+				title="Google Tag Manager"></iframe>
+		</noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<a
+			href="#main-content"
+			class="fixed left-4 top-4 z-[100] -translate-y-24 bg-foundry-orange px-4 py-3 font-mono text-xs uppercase tracking-wider text-sign-black transition-transform focus:translate-y-0 motion-reduce:transition-none"
+		>
+			Skip to main content
+		</a>
+		<SiteHeader />
+		<slot />
+		<SiteFooter />
+	</body>
+</html>

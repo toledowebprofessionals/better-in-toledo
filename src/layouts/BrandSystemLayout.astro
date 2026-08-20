@@ -1,0 +1,55 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import BrandSystemSidebar from '../components/brand-system/BrandSystemSidebar.astro';
+
+interface Props {
+	title: string;
+	description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<BaseLayout {title} {description}>
+	<div class="brand-page">
+		<div class="brand-layout">
+			<BrandSystemSidebar />
+			<main id="main-content" class="brand-content" tabindex="-1"><slot /></main>
+		</div>
+	</div>
+</BaseLayout>
+
+<style>
+	:global(body) {
+		background: #faf9f5;
+	}
+	.brand-page {
+		min-height: calc(100vh - 4.5rem);
+		padding: clamp(2rem, 4vw, 4rem) clamp(1.25rem, 2vw, 2rem);
+		background: #faf9f5;
+	}
+	.brand-layout {
+		width: 100%;
+		max-width: 1600px;
+		margin-inline: auto;
+	}
+	.brand-content {
+		min-width: 0;
+		padding: 0 clamp(1.25rem, 5vw, 6rem);
+	}
+	@media (min-width: 900px) {
+		.brand-layout {
+			display: grid;
+			grid-template-columns: 16rem minmax(0, 1fr);
+			align-items: start;
+			gap: clamp(2rem, 4vw, 5rem);
+		}
+	}
+	@media (max-width: 899px) {
+		.brand-page {
+			padding-top: 0;
+		}
+		.brand-content {
+			padding-top: 1.5rem;
+		}
+	}
+</style>

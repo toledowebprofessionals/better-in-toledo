@@ -1,0 +1,47 @@
+---
+interface Props {
+	label: string;
+	href: string;
+	external?: boolean;
+}
+const { label, href, external = false } = Astro.props;
+---
+
+<a
+	class="article-cta"
+	href={href}
+	target={external ? '_blank' : undefined}
+	rel={external ? 'noopener noreferrer' : undefined}
+	><span class="button-label">{label}</span>
+	<span class="button-icon" aria-hidden="true">→</span></a
+>
+
+<style>
+	.article-cta {
+		display: flex;
+		width: 100%;
+		max-width: 21rem;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 2rem;
+		border: 1px solid currentColor;
+		padding: 0.95rem 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		transition:
+			background-color 0.2s,
+			color 0.2s;
+	}
+	.article-cta:hover {
+		background: #161616;
+		color: #f4f1e8;
+	}
+	.article-cta span {
+		transition: transform 0.2s ease;
+	}
+	.article-cta:hover span {
+		transform: translateX(0.2rem);
+	}
+</style>

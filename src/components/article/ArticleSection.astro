@@ -1,0 +1,118 @@
+---
+interface Props {
+	label?: string;
+	headline?: string;
+	headlineSuffix?: string;
+	size?: 'standard' | 'large';
+	first?: boolean;
+	class?: string;
+}
+
+const {
+	label,
+	headline,
+	headlineSuffix,
+	size = 'standard',
+	first = false,
+	class: className,
+} = Astro.props;
+---
+
+<section
+	class:list={[
+		'article-section',
+		`article-section--${size}`,
+		{ 'article-section--first': first },
+		className,
+	]}
+>
+	{label && <p class="article-section__label">{label}</p>}
+	{
+		headline && (
+			<h2>
+				{headline}
+				{headlineSuffix && (
+					<>
+						{' '}
+						<span class="article-section__nowrap">{headlineSuffix}</span>
+					</>
+				)}
+			</h2>
+		)
+	}
+	<div class="article-section__body"><slot /></div>
+</section>
+
+<style>
+	.article-section {
+		margin-top: clamp(4rem, 8vw, 8rem);
+		border-top: 1px solid #161616;
+		padding-top: clamp(1.5rem, 3vw, 2.5rem);
+	}
+	.article-section--first {
+		margin-top: 0;
+	}
+	.article-section__label {
+		margin-bottom: 2rem;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+	h2 {
+		margin-bottom: 1.5rem;
+		font-family: var(--font-display);
+		font-size: clamp(2.25rem, 5vw, 4rem);
+		font-weight: 700;
+		line-height: 0.9;
+		text-transform: uppercase;
+	}
+	.article-section--large h2 {
+		max-width: 15ch;
+		margin-bottom: 2rem;
+		font-size: clamp(2.75rem, 6vw, 5.5rem);
+		line-height: 0.88;
+		letter-spacing: -0.02em;
+	}
+	:global(.article-section__body > p),
+	:global(.article-section__body li) {
+		font-size: 1.05rem;
+		line-height: 1.75;
+	}
+	:global(.article-section__body > p + p) {
+		margin-top: 1.25rem;
+	}
+	:global(.article-section__body a) {
+		text-decoration: underline;
+		text-decoration-color: #d96832;
+		text-underline-offset: 0.2em;
+	}
+	:global(.article-section__body a:hover) {
+		color: #204e63;
+	}
+	:global(.article-section__body :is(ul, ol)) {
+		display: grid;
+		gap: 1rem;
+		padding-left: 1.4rem;
+	}
+	:global(.article-section__body ul) {
+		list-style: square;
+	}
+	:global(.article-section__body ol) {
+		list-style: decimal;
+	}
+	:global(.article-section__body :is(ul, ol) + p) {
+		margin-top: 2rem;
+	}
+	:global(.article-section__body code) {
+		padding: 0.12rem 0.35rem;
+		background: rgb(22 22 22 / 8%);
+		font-family: var(--font-mono);
+		font-size: 0.88em;
+	}
+	@media (min-width: 768px) {
+		.article-section__nowrap {
+			white-space: nowrap;
+		}
+	}
+</style>

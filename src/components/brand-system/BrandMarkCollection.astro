@@ -1,0 +1,220 @@
+---
+interface Logo {
+	name: string;
+	file: string;
+	src: string;
+	field: string;
+	description: string;
+}
+interface Props {
+	logos: Logo[];
+	packageHref: string;
+	showcaseGridSrc: string;
+	showcaseLogoSrc: string;
+}
+const { logos, packageHref, showcaseGridSrc, showcaseLogoSrc } = Astro.props;
+---
+
+<a class="eps-download" href={packageHref} download="you-will-do-better-in-toledo-logos.eps"
+	><span class="button-label">Download EPS logo package</span>
+	<span class="button-icon" aria-hidden="true">↓</span></a
+>
+<p class="rights-note">
+	No trademark rights claimed. Original project artwork is released under <a href="/license/"
+		>CC0 1.0</a
+	>.
+</p>
+<div class="mark-showcase">
+	<img class="mark-showcase__grid" src={showcaseGridSrc} alt="" />
+	<div class="mark-showcase__frame" aria-hidden="true"></div>
+	<div class="mark-showcase__logo">
+		<img src={showcaseLogoSrc} alt="You Will Do Better in Toledo" />
+	</div>
+</div>
+<div class="logo-collection">
+	{
+		logos.map((logo) => (
+			<article class="logo-specimen">
+				<div
+					class:list={[
+						'logo-specimen__artwork',
+						logo.field === 'dark'
+							? 'logo-specimen__artwork--dark'
+							: 'logo-specimen__artwork--light',
+					]}
+				>
+					<img
+						src={logo.src}
+						alt={`${logo.name} version of the You Will Do Better in Toledo logo`}
+					/>
+				</div>
+				<div class="logo-specimen__details">
+					<>
+						<h2 class="logo-specimen__label">{logo.name}</h2>
+						<p>{logo.description}</p>
+						<a href={logo.src} download={logo.file}>
+							<span class="button-label">Download SVG</span>
+							<span class="button-icon" aria-hidden="true">
+								↓
+							</span>
+						</a>
+					</>
+				</div>
+			</article>
+		))
+	}
+</div>
+
+<style>
+	.eps-download {
+		display: flex;
+		width: 100%;
+		max-width: 20rem;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 2rem;
+		border: 1px solid #161616;
+		padding: 0.9rem 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		transition:
+			background-color 0.2s,
+			color 0.2s;
+	}
+	.eps-download:hover {
+		background: #161616;
+		color: #f4f1e8;
+	}
+	.rights-note {
+		max-width: 35rem;
+		margin-top: 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.65rem;
+		line-height: 1.6;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: rgb(22 22 22 / 68%);
+	}
+	.rights-note a {
+		text-decoration: underline;
+		text-decoration-color: #d96832;
+		text-underline-offset: 0.2em;
+	}
+	.rights-note a:hover {
+		color: #204e63;
+	}
+	.mark-showcase {
+		position: relative;
+		display: flex;
+		aspect-ratio: 2 / 1;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		margin-top: clamp(2rem, 3vw, 3rem);
+		border: 1px solid rgb(244 241 232 / 40%);
+		background: #161616;
+	}
+	.mark-showcase__grid {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 105%;
+		max-width: none;
+		transform: translate(-50%, -50%);
+		filter: invert(1);
+		opacity: 0.14;
+		pointer-events: none;
+	}
+	.mark-showcase__frame {
+		position: absolute;
+		inset: clamp(1rem, 2vw, 2rem);
+		border: 1px solid rgb(244 241 232 / 25%);
+	}
+	.mark-showcase__logo {
+		position: relative;
+		z-index: 1;
+		width: 56%;
+		max-width: 53rem;
+		border: 1px solid rgb(133 133 133 / 60%);
+		padding: 3%;
+		background: #161616;
+	}
+	.mark-showcase__logo img {
+		width: 100%;
+	}
+	.logo-collection {
+		margin-top: clamp(4rem, 7vw, 7rem);
+		border-top: 1px solid #161616;
+	}
+	.logo-specimen {
+		display: grid;
+		gap: clamp(2rem, 4vw, 4rem);
+		border-bottom: 1px solid #161616;
+		padding-block: clamp(2rem, 4vw, 4rem);
+	}
+	.logo-specimen:last-child {
+		border-bottom: 0;
+	}
+	.logo-specimen__artwork {
+		display: flex;
+		min-height: 14rem;
+		align-items: center;
+		justify-content: center;
+		padding: clamp(1.5rem, 3vw, 3rem);
+	}
+	.logo-specimen__artwork--light {
+		border: 1px solid rgb(22 22 22 / 18%);
+		background: #fff;
+	}
+	.logo-specimen__artwork--dark {
+		background: #161616;
+	}
+	.logo-specimen__artwork img {
+		width: 100%;
+		max-width: 22rem;
+		max-height: 9rem;
+	}
+	.logo-specimen__details {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		font-size: 1.05rem;
+		line-height: 1.65;
+	}
+	.logo-specimen__label {
+		margin-bottom: 1.25rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+		font-weight: 700;
+		line-height: 0.95;
+		text-transform: uppercase;
+	}
+	.logo-specimen__details a {
+		display: flex;
+		width: 100%;
+		max-width: 18rem;
+		justify-content: space-between;
+		margin-top: 2rem;
+		border: 1px solid #161616;
+		padding: 0.9rem 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		transition:
+			background-color 0.2s,
+			color 0.2s;
+	}
+	.logo-specimen__details a:hover {
+		background: #161616;
+		color: #f4f1e8;
+	}
+	@media (min-width: 900px) {
+		.logo-specimen {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+		}
+	}
+</style>

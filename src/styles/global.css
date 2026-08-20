@@ -1,0 +1,66 @@
+@import "@fontsource/barlow-condensed/700.css";
+@import "@fontsource/barlow-condensed/800.css";
+@import "@fontsource-variable/ibm-plex-sans";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "tailwindcss";
+
+@theme {
+	--color-sign-black: #161616;
+	--color-paper-white: #f4f1e8;
+	--color-glass-blue: #6ebac4;
+	--color-maumee-blue: #204e63;
+	--color-foundry-orange: #d96832;
+	--color-steel-gray: #858585;
+	--font-display: "Barlow Condensed", sans-serif;
+	--font-sans: "IBM Plex Sans Variable", sans-serif;
+	--font-mono: "IBM Plex Mono", monospace;
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		background: var(--color-paper-white);
+		color: var(--color-sign-black);
+		font-family: var(--font-sans);
+	}
+
+	::selection {
+		background: var(--color-glass-blue);
+		color: var(--color-sign-black);
+	}
+
+	:focus-visible {
+		outline: 3px solid var(--color-foundry-orange);
+		outline-offset: 3px;
+	}
+
+	main[tabindex="-1"]:focus {
+		outline: none;
+	}
+
+	.button-label {
+		min-width: 0;
+		overflow-wrap: anywhere;
+	}
+
+	.button-icon {
+		flex: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}

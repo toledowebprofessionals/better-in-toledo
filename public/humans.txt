@@ -1,0 +1,19 @@
+/* TEAM */
+
+Creator, Design, and Development: Dan Paquette
+Contact: dm.paquette@gmail.com
+Website: https://danpaquette.net
+
+/* SITE */
+
+Project: You Will Do Better in Toledo
+Website: https://betterintoledo.com
+Purpose: An open-source, public-domain brand resource for a modern Toledo.
+Technology: Astro, Tailwind CSS, HTML, CSS, JavaScript
+Hosting: Netlify
+Language: English
+License: CC0 1.0 Universal, except where otherwise credited
+
+/* ACKNOWLEDGMENT */
+
+AI-assisted design and development tools helped shape this website and its vision as a public resource toward the public good.

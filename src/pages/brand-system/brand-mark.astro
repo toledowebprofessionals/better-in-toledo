@@ -1,0 +1,82 @@
+---
+import BrandSystemLayout from '../../layouts/BrandSystemLayout.astro';
+import BrandPageIntroduction from '../../components/brand-system/BrandPageIntroduction.astro';
+import BrandMarkCollection from '../../components/brand-system/BrandMarkCollection.astro';
+import fullDarkUrl from '../../assets/images/logos/logo-full-dark.svg?url';
+import fullWhiteUrl from '../../assets/images/logos/logo-full-white.svg?url';
+import frameDarkUrl from '../../assets/images/logos/logo-frame-dark.svg?url';
+import frameWhiteUrl from '../../assets/images/logos/logo-frame-white.svg?url';
+import logotypeDarkUrl from '../../assets/images/logos/logotype-dark.svg?url';
+import logotypeWhiteUrl from '../../assets/images/logos/logotype-white.svg?url';
+import logoPackageUrl from '../../assets/images/logos/you-will-do-better-in-toledo-logos.eps?url';
+import standaloneGridUrl from '../../assets/images/graphic-elements/structural-grid-standalone.svg?url';
+
+const title = 'Brand Mark & Logos • You Will Do Better in Toledo';
+const description =
+	'Explore and download the public domain You Will Do Better in Toledo brand mark, lovingly rebuilt from Toledo’s historic civic symbol for modern use.';
+const introduction = {
+	label: '01 / Brand mark',
+	description:
+		'The brand mark carries forward the unmistakable character of Toledo’s original civic message. Its irregular lettering has been carefully rebuilt as durable artwork, ready for clear and consistent use across signs, screens, print, merchandise, and whatever Toledo makes next.',
+};
+const logos = [
+	{
+		name: 'Full mark / Dark',
+		file: 'logo-full-dark.svg',
+		src: fullDarkUrl,
+		field: 'light',
+		description:
+			'The complete dark mark for light backgrounds. Use this version when the artwork needs to stand on white, paper, or another quiet light field.',
+	},
+	{
+		name: 'Full mark / White',
+		file: 'logo-full-white.svg',
+		src: fullWhiteUrl,
+		field: 'dark',
+		description:
+			'The complete white mark is the preferred primary treatment. Use it on Sign Black or photography with strong, dependable contrast.',
+	},
+	{
+		name: 'Framed mark / Dark',
+		file: 'logo-frame-dark.svg',
+		src: frameDarkUrl,
+		field: 'light',
+		description:
+			'The dark framed mark contains the message within its original rectangular boundary. Use it when the frame should function as part of the composition.',
+	},
+	{
+		name: 'Framed mark / White',
+		file: 'logo-frame-white.svg',
+		src: frameWhiteUrl,
+		field: 'dark',
+		description:
+			'The white framed mark is built for black fields, signage, and bold applications where the full historic structure should remain visible.',
+	},
+	{
+		name: 'Logotype / Dark',
+		file: 'logotype-dark.svg',
+		src: logotypeDarkUrl,
+		field: 'light',
+		description:
+			'The dark logotype removes the outer frame for tighter horizontal spaces while preserving the distinctive lettering of the full mark.',
+	},
+	{
+		name: 'Logotype / White',
+		file: 'logotype-white.svg',
+		src: logotypeWhiteUrl,
+		field: 'dark',
+		description:
+			'The white logotype is the compact choice for dark horizontal layouts, including navigation, footers, labels, and smaller brand moments.',
+	},
+];
+---
+
+<BrandSystemLayout {title} {description}>
+	<BrandPageIntroduction {...introduction} />
+	<BrandMarkCollection
+		{logos}
+		packageHref={logoPackageUrl}
+		showcaseGridSrc={standaloneGridUrl}
+		showcaseLogoSrc={frameWhiteUrl}
+	/>
+</BrandSystemLayout>

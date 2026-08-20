@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleHeader from '../../components/article/ArticleHeader.astro';
+import ArticleContent from '../../components/article/ArticleContent.astro';
+import ArticleSection from '../../components/article/ArticleSection.astro';
+
+const title = 'Contribute • You Will Do Better in Toledo';
+const description =
+	'Help expand the You Will Do Better in Toledo public domain project by contributing design resources, photography, research, code, and improvements.';
+
+const articleHeader = {
+	label: 'Contribute / Open Source, Public Domain',
+	headlineLines: [{ text: 'Help make it better.' }],
+	introduction:
+		'This project belongs to the people who use it. Contributions can be as small as correcting a sentence or as ambitious as adding a new public resource for Toledo. Thoughtful improvements are welcome from designers, developers, photographers, writers, historians, and neighbors.',
+	actions: [
+		{
+			label: 'View the project on GitHub',
+			href: 'https://github.com/toledowebprofessionals/better-in-toledo',
+			external: true,
+		},
+		{
+			label: 'Open an issue',
+			href: 'https://github.com/toledowebprofessionals/better-in-toledo/issues',
+			external: true,
+		},
+	],
+};
+---
+
+<BaseLayout {title} {description}>
+	<main id="main-content" class="contribute-page" tabindex="-1">
+		<ArticleHeader {...articleHeader} />
+		<ArticleContent>
+			<ArticleSection headline="Ways to contribute" first>
+				<ul>
+					<li>
+						<strong>Improve the system.</strong> Refine documentation, usage guidance, accessibility,
+						responsive behavior, or the organization of brand resources.
+					</li>
+					<li>
+						<strong>Add useful assets.</strong> Contribute templates, export formats, production-ready
+						files, or graphic tools that make the identity easier to use.
+					</li>
+					<li>
+						<strong>Share Toledo photography.</strong> Submit original or public-domain images with clear
+						authorship, source information, and licensing details.
+					</li>
+					<li>
+						<strong>Strengthen the history.</strong> Correct dates, identify sources, add context, or
+						help document the people and places behind the original sign.
+					</li>
+					<li>
+						<strong>Show the work.</strong> Share real applications of the system so others can learn
+						from, adapt, and improve them.
+					</li>
+				</ul>
+			</ArticleSection>
+
+			<ArticleSection headline="Don’t know Git?">
+				<p>
+					You do not need a GitHub account or development experience to contribute. Send
+					alterations, visual concepts, new resource ideas, corrections, historical context,
+					photography, writing, or examples of the brand in use. Include enough detail for someone
+					else to understand the idea, along with source files and attribution when relevant.
+				</p>
+				<p>
+					Email contributions to <a href="mailto:contribute@betterintoledo.com"
+						>contribute@betterintoledo.com</a
+					>.
+				</p>
+			</ArticleSection>
+
+			<ArticleSection headline="Before you begin">
+				<p>
+					Check the existing <a
+						href="https://github.com/toledowebprofessionals/better-in-toledo/issues"
+						target="_blank"
+						rel="noopener noreferrer">issues</a
+					> and pull requests before starting substantial work. For a larger addition or a change in
+					direction, open an issue first and describe the problem, the proposed approach, and who it
+					would help. That gives everyone a place to discuss the idea before time is invested in implementation.
+				</p>
+			</ArticleSection>
+
+			<ArticleSection headline="Local development">
+				<ol>
+					<li>Fork or clone the repository.</li>
+					<li>Use Node.js 22.12 or newer.</li>
+					<li>Run <code>npm install</code> to install dependencies.</li>
+					<li>Run <code>npm run dev</code> to start the Astro development server.</li>
+					<li>Run <code>npm run build</code> before submitting your work.</li>
+				</ol>
+				<p>
+					The site is built with Astro and Tailwind CSS and should remain useful as server-rendered
+					HTML. Add client-side JavaScript only when the interaction genuinely requires it.
+				</p>
+			</ArticleSection>
+
+			<ArticleSection headline="Pull requests">
+				<p>
+					Keep each pull request focused on one clear improvement. Explain what changed, why it
+					changed, and how you verified it. Include screenshots for visual work, identify affected
+					screen sizes, and note any decisions that future contributors should understand.
+				</p>
+				<p>
+					Preserve existing work unless the contribution explicitly replaces it. Use plain language,
+					meaningful HTML, keyboard-accessible interactions, responsive layouts, and reduced-motion
+					behavior where animation is present.
+				</p>
+			</ArticleSection>
+
+			<ArticleSection headline="Assets, sources, and rights">
+				<p>
+					Only contribute work you created or material that can legally become part of this public
+					resource. Include the original source, creator, and license for photography, archival
+					material, typefaces, and other third-party assets. Do not submit copyrighted material
+					without permission.
+				</p>
+				<p>
+					By contributing original work, you agree that it may be released with the project under <a
+						href="https://creativecommons.org/publicdomain/zero/1.0/"
+						target="_blank"
+						rel="license noopener noreferrer">CC0 1.0</a
+					>, to the extent legally possible. <a href="/license/">Read more about the license.</a>
+				</p>
+			</ArticleSection>
+
+			<ArticleSection headline="AI-assisted work">
+				<p>
+					AI-assisted tools may be used, but contributors remain responsible for every submitted
+					word, image, source, and line of code. Review the result carefully, disclose meaningful AI
+					involvement, verify factual claims and rights, and never use generated output as a
+					substitute for consent, attribution, or local knowledge.
+				</p>
+			</ArticleSection>
+
+			<ArticleSection headline="Be a good neighbor">
+				<p>
+					Be direct, generous, and respectful. Critique the work rather than the person. Make room
+					for people with different backgrounds and levels of experience. This project should be
+					useful to Toledo, and working on it should feel like building something together.
+				</p>
+			</ArticleSection>
+		</ArticleContent>
+	</main>
+</BaseLayout>

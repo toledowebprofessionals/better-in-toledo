@@ -1,0 +1,95 @@
+---
+interface Props {
+	sectionLabel: string;
+	contextLabel: string;
+	gridSrc: string;
+	logoSrc: string;
+	logoAlt: string;
+	headline: string;
+	headlineAccent: string;
+	ctaLabel: string;
+	ctaHref: string;
+	description: string;
+	licenseLead: string;
+	licenseLabel: string;
+	licenseUrl: string;
+	licenseCopy: string;
+}
+
+const {
+	sectionLabel,
+	contextLabel,
+	gridSrc,
+	logoSrc,
+	logoAlt,
+	headline,
+	headlineAccent,
+	ctaLabel,
+	ctaHref,
+	description,
+	licenseLead,
+	licenseLabel,
+	licenseUrl,
+	licenseCopy,
+} = Astro.props;
+---
+
+<section class="overflow-hidden bg-sign-black px-5 py-20 text-paper-white md:px-8 md:py-32">
+	<div class="mx-auto max-w-[1600px]">
+		<div
+			class="flex flex-col items-start gap-1 border-t border-paper-white/50 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] md:flex-row md:items-center md:justify-between md:gap-6 md:text-xs"
+		>
+			<span>{sectionLabel}</span>
+			<span>{contextLabel}</span>
+		</div>
+
+		<div
+			class="relative my-16 flex aspect-[2/1] items-center justify-center overflow-hidden border border-paper-white/40 md:my-24"
+		>
+			<img
+				src={gridSrc}
+				alt=""
+				class="pointer-events-none absolute inset-1/2 w-[105%] max-w-none -translate-x-1/2 -translate-y-1/2 invert opacity-[0.14]"
+			/>
+			<div class="absolute inset-4 border border-paper-white/25 md:inset-8"></div>
+			<div
+				class="relative z-10 w-[56%] max-w-[53rem] border border-steel-gray/60 bg-sign-black p-[3%]"
+			>
+				<img src={logoSrc} alt={logoAlt} class="w-full" />
+			</div>
+		</div>
+
+		<div class="grid gap-12 border-t border-paper-white/50 pt-8 md:grid-cols-12 md:gap-8 md:pt-12">
+			<div class="md:col-span-5">
+				<h2
+					class="font-display text-5xl font-extrabold uppercase leading-[0.86] tracking-[-0.03em] md:text-7xl"
+				>
+					{headline}<br /><span class="text-foundry-orange">{headlineAccent}</span>
+				</h2>
+				<a
+					href={ctaHref}
+					class="group mt-8 flex max-w-sm items-center justify-between border border-paper-white px-5 py-4 font-mono text-xs uppercase tracking-[0.12em] transition-colors hover:bg-paper-white hover:text-sign-black"
+				>
+					<span class="button-label">{ctaLabel}</span>
+					<span
+						class="button-icon text-lg transition-transform group-hover:translate-x-1"
+						aria-hidden="true">→</span
+					>
+				</a>
+			</div>
+			<div class="space-y-7 text-lg leading-relaxed md:col-span-5 md:col-start-8 md:text-xl">
+				<p>{description}</p>
+				<p>
+					{licenseLead}
+					<a
+						href={licenseUrl}
+						target="_blank"
+						rel="license noopener noreferrer"
+						class="underline decoration-foundry-orange underline-offset-4 hover:text-foundry-orange"
+						>{licenseLabel}</a
+					>{licenseCopy}
+				</p>
+			</div>
+		</div>
+	</div>
+</section>

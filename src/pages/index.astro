@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MainHero from '../components/page-components/MainHero.astro';
+import StorySection from '../components/page-components/StorySection.astro';
+import MarkSection from '../components/page-components/MarkSection.astro';
+import BrandResourcesSection from '../components/page-components/BrandResourcesSection.astro';
+import ContributionSection from '../components/page-components/ContributionSection.astro';
+import skylineImage from '../assets/images/skyline/toledo-skyline-maumee-night.jpg';
+import historicSignImage from '../assets/images/sign/better-in-toledo-sign.jpg';
+import standaloneGridUrl from '../assets/images/graphic-elements/structural-grid-standalone.svg?url';
+import tileableGridUrl from '../assets/images/graphic-elements/structural-grid.svg?url';
+import framedLogoUrl from '../assets/images/logos/logo-frame-white.svg?url';
+
+const title = 'You Will Do Better in Toledo • A Public Domain Branding System';
+const description =
+	'A public domain revival of Toledo’s historic slogan and symbol, with logos, typography, colors, graphics, photography, and brand resources.';
+
+const hero = {
+	imageSrc: skylineImage,
+	imageWidth: 1920,
+	imageHeight: 756,
+	imageAlt: 'Downtown Toledo skyline reflected in the Maumee River at night',
+	location: 'Toledo, Ohio / USA',
+	coordinates: '41.6639° N, 83.5552° W',
+	headlineLines: [{ text: 'We will' }, { text: 'do', accent: 'better.' }],
+	supportingCopy:
+		'An aggressively open-source, public domain rebuild of a classic symbol for a modern Toledo.',
+	photoCredit: 'Chris Rycroft / Wikimedia Commons',
+	photoCreditUrl:
+		'https://commons.wikimedia.org/wiki/File:Toledo_skyline_on_the_Maumee_River_at_night_(53867621933).jpg',
+	photoLicense: 'CC BY 2.0',
+	photoLicenseUrl: 'https://creativecommons.org/licenses/by/2.0',
+	ctaLabel: 'Download + use the brand',
+	ctaHref: '#resources',
+};
+
+const story = {
+	sectionLabel: '01 / The story',
+	contextLabel: 'Toledo, Ohio / 1913',
+	headline: 'A message built to',
+	headlineAccent: 'outlast doubt.',
+	imageSrc: historicSignImage,
+	imageAlt: 'The original You will do better in Toledo rooftop sign',
+	imageWidth: 1400,
+	imageHeight: 893,
+	caption: 'The original unilluminated sign',
+	captionLocation: 'Adams + St. Clair Street',
+	leadCopy: 'You will do better in Toledo began as a symbol of bold, unbridled optimism.',
+	paragraphs: [
+		'Toledo’s slogan sign was presented to the city through the Toledo Commerce Club by the Toledo Railways & Light Company. The slogan itself was chosen from more than 7,000 entries submitted in a contest sponsored by the Toledo Commerce Club.',
+		'Located atop the Valentine Building at Adams and St. Clair streets, the sign alternated between three images with its 7,000 ten-watt electric lights—the slogan, a railroad locomotive, and a lake freighter.',
+	],
+	closingCopy:
+		'More than a century later, the words still belong to everyone building, making, and choosing this city.',
+	citationAuthors: 'Ken Levin, Sandy Husman, and John R. Husman',
+	citationTitle:
+		'You Will Do Better in Toledo: From Frogtown to Glass City—A Toledo Retrospective in Postcards, 1893–1929',
+	citationUrl:
+		'https://www.thebladevault.com/book-products/p/you-will-do-better-in-toledo-from-frogtown-to-glass-city',
+};
+
+const mark = {
+	sectionLabel: '02 / The mark',
+	contextLabel: 'Open by design',
+	gridSrc: standaloneGridUrl,
+	logoSrc: framedLogoUrl,
+	logoAlt: 'You Will Do Better in Toledo',
+	headline: 'Built again.',
+	headlineAccent: 'Open forever.',
+	ctaLabel: 'Download + use the brand',
+	ctaHref: '#resources',
+	description:
+		'The symbol has been carefully rebuilt for modern use, faithful to the character of the original sign, durable across formats, and ready to belong to the city again.',
+	licenseLead: 'It is released under',
+	licenseLabel: 'CC0 1.0',
+	licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+	licenseCopy:
+		', placing the work in the public domain. Use it, adapt it, print it, remix it, and pass it on. No permission required.',
+};
+
+const brandResources = {
+	anchorId: 'resources',
+	sectionLabel: '03 / Brand resources',
+	headlineLines: ['Use it.', 'Build on it.'],
+	description:
+		'A practical system for carrying Toledo’s most enduring message forward, free and open to the public.',
+	resources: [
+		{
+			number: '01',
+			title: 'Brand system',
+			detail:
+				'Download and use the logos, colors, typography, and graphic tools that make the system work.',
+			href: '/brand-system/',
+		},
+		{
+			number: '02',
+			title: 'Contribute',
+			detail:
+				'Help build a living Toledo brand. Add resources, improve the system, or share what you make.',
+			href: '/contribute/',
+		},
+		{
+			number: '03',
+			title: 'Photography',
+			detail: 'Public-domain Toledo photography, ready to download, remix, and use.',
+			href: '/photography/',
+		},
+		{
+			number: '04',
+			title: 'License',
+			detail: 'CC0 public domain. Free to use, adapt, and build on, forever.',
+			href: '/license/',
+		},
+	],
+};
+
+const contribution = {
+	sectionLabel: '04 / Made with love in Toledo',
+	contextLabel: 'Open source. Public domain.',
+	backgroundPatternSrc: tileableGridUrl,
+	headline: 'The glass',
+	headlineAccent: 'still shines.',
+	description:
+		'This is an open project that gets better when you contribute. Add new assets, photography, corrections, and ideas, or show off what you make with the system.',
+	ctaLabel: 'Contribute to the project',
+	ctaHref: '/contribute/',
+};
+---
+
+<BaseLayout {title} {description}>
+	<main id="main-content" tabindex="-1">
+		<MainHero {...hero} />
+
+		<StorySection {...story} />
+
+		<MarkSection {...mark} />
+
+		<BrandResourcesSection {...brandResources} />
+
+		<ContributionSection {...contribution} />
+	</main>
+</BaseLayout>

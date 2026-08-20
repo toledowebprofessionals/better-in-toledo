@@ -1,0 +1,226 @@
+---
+interface Value {
+	hex: string;
+	rgb: string;
+	cmyk: string;
+	lightText: boolean;
+}
+interface Color {
+	name: string;
+	hex: string;
+	role: string;
+	variants: Value[];
+	base: Value;
+}
+interface Props {
+	palette: Color[];
+}
+const { palette } = Astro.props;
+---
+
+<div class="color-list">
+	{
+		palette.map((color) => (
+			<article class="color-card" data-color-card>
+				<div
+					class:list={['color-swatch', color.base.lightText && 'color-swatch--light-text']}
+					style={`background:${color.hex}`}
+					data-color-swatch
+				>
+					<>
+						<span>{color.name}</span>
+						<span data-swatch-hex>{color.hex}</span>
+					</>
+				</div>
+				<div class="tone-scale" role="group" aria-label={`${color.name} tonal variations`}>
+					{color.variants.map((variant) => (
+						<button
+							type="button"
+							class="tone-scale__tone"
+							style={`background:${variant.hex}`}
+							data-hex={variant.hex}
+							data-rgb={variant.rgb}
+							data-cmyk={variant.cmyk}
+							data-light-text={variant.lightText}
+							aria-label={`Select ${color.name} tone ${variant.hex}`}
+							aria-pressed={variant.hex === color.hex ? 'true' : 'false'}
+						/>
+					))}
+				</div>
+				<div class="color-details">
+					<>
+						<div>
+							<>
+								<h2>{color.name}</h2>
+								<p>{color.role}</p>
+							</>
+						</div>
+						<dl aria-live="polite" aria-atomic="true">
+							<>
+								<div>
+									<>
+										<dt>HEX</dt>
+										<dd data-value="hex">{color.base.hex}</dd>
+									</>
+								</div>
+								<div>
+									<>
+										<dt>RGB</dt>
+										<dd data-value="rgb">{color.base.rgb}</dd>
+									</>
+								</div>
+								<div>
+									<>
+										<dt>CMYK</dt>
+										<dd data-value="cmyk">{color.base.cmyk}</dd>
+									</>
+								</div>
+							</>
+						</dl>
+					</>
+				</div>
+			</article>
+		))
+	}
+</div>
+
+<style>
+	.color-list {
+		display: grid;
+		gap: 1.5rem;
+		margin-top: clamp(2rem, 3vw, 3rem);
+	}
+	.color-card {
+		display: flex;
+		min-width: 0;
+		flex-direction: column;
+		border: 1px solid #161616;
+		background: #faf9f5;
+	}
+	.color-swatch {
+		display: flex;
+		min-height: 15rem;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 1.25rem;
+		border-bottom: 1px solid #161616;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #161616;
+	}
+	.color-swatch--light-text {
+		color: #f4f1e8;
+	}
+	.tone-scale {
+		display: flex;
+		height: 3.25rem;
+		border-bottom: 1px solid #161616;
+	}
+	.tone-scale__tone {
+		position: relative;
+		flex: 1;
+		cursor: pointer;
+		border-right: 1px solid rgb(22 22 22 / 25%);
+	}
+	.tone-scale__tone:last-child {
+		border-right: 0;
+	}
+	.tone-scale__tone::after {
+		position: absolute;
+		inset: 5px;
+		border: 2px solid transparent;
+		content: '';
+		transition:
+			border-color 0.15s,
+			inset 0.15s;
+	}
+	.tone-scale__tone:hover::after {
+		border-color: rgb(255 255 255 / 65%);
+	}
+	.tone-scale__tone[aria-pressed='true']::after {
+		inset: 3px;
+		border-color: #fff;
+		box-shadow: 0 0 0 1px #161616;
+	}
+	.color-details {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: 2rem;
+		padding: clamp(1.5rem, 3vw, 2.5rem);
+	}
+	.color-details h2 {
+		margin-bottom: 1rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 3vw, 2.75rem);
+		font-weight: 700;
+		line-height: 0.9;
+		text-transform: uppercase;
+	}
+	.color-details p {
+		max-width: 34rem;
+		font-size: 1.05rem;
+		line-height: 1.6;
+	}
+	dl {
+		margin-top: auto;
+		border-top: 1px solid rgb(22 22 22 / 30%);
+	}
+	dl div {
+		display: grid;
+		grid-template-columns: 7rem 1fr;
+		border-bottom: 1px solid rgb(22 22 22 / 20%);
+		padding-block: 0.7rem;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+	dt {
+		color: rgb(22 22 22 / 72%);
+	}
+	@media (max-width: 480px) {
+		dl div {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 0.35rem;
+		}
+		dd {
+			overflow-wrap: anywhere;
+		}
+	}
+	@media (min-width: 900px) {
+		.color-list {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+</style>
+
+<script>
+	document.querySelectorAll<HTMLElement>('[data-color-card]').forEach((card) => {
+		const swatch = card.querySelector<HTMLElement>('[data-color-swatch]');
+		const swatchHex = card.querySelector<HTMLElement>('[data-swatch-hex]');
+		const values = {
+			hex: card.querySelector<HTMLElement>('[data-value="hex"]'),
+			rgb: card.querySelector<HTMLElement>('[data-value="rgb"]'),
+			cmyk: card.querySelector<HTMLElement>('[data-value="cmyk"]'),
+		};
+		card.querySelectorAll<HTMLButtonElement>('.tone-scale__tone').forEach((button) =>
+			button.addEventListener('click', () => {
+				card
+					.querySelectorAll<HTMLButtonElement>('.tone-scale__tone')
+					.forEach((tone) => tone.setAttribute('aria-pressed', 'false'));
+				button.setAttribute('aria-pressed', 'true');
+				if (swatch) {
+					swatch.style.backgroundColor = button.dataset.hex ?? '';
+					swatch.classList.toggle('color-swatch--light-text', button.dataset.lightText === 'true');
+				}
+				if (swatchHex) swatchHex.textContent = button.dataset.hex ?? '';
+				if (values.hex) values.hex.textContent = button.dataset.hex ?? '';
+				if (values.rgb) values.rgb.textContent = button.dataset.rgb ?? '';
+				if (values.cmyk) values.cmyk.textContent = button.dataset.cmyk ?? '';
+			}),
+		);
+	});
+</script>

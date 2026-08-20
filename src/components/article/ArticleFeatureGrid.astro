@@ -1,0 +1,72 @@
+---
+interface Item {
+	number: string;
+	title: string;
+	description: string;
+}
+interface Props {
+	items: Item[];
+}
+const { items } = Astro.props;
+---
+
+<ul class="feature-grid">
+	{
+		items.map((item) => (
+			<li>
+				<>
+					<span>{item.number}</span>
+					<strong>{item.title}</strong>
+					<p>{item.description}</p>
+				</>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.feature-grid {
+		display: grid;
+		gap: 0;
+		border-top: 1px solid #161616;
+		padding-left: 0;
+		list-style: none;
+	}
+	.feature-grid li {
+		display: grid;
+		gap: 0.8rem;
+		border-bottom: 1px solid #161616;
+		padding-block: 1.5rem;
+	}
+	.feature-grid span {
+		font-family: var(--font-mono);
+		font-size: 0.65rem;
+	}
+	.feature-grid strong {
+		font-family: var(--font-display);
+		font-size: 2rem;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+	.feature-grid p {
+		font-size: 1.05rem;
+		line-height: 1.75;
+	}
+	@media (max-width: 767px) {
+		.feature-grid li:last-child {
+			border-bottom: 0;
+		}
+	}
+	@media (min-width: 768px) {
+		.feature-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+		.feature-grid li:nth-child(odd) {
+			padding-right: 2rem;
+			border-right: 1px solid #161616;
+		}
+		.feature-grid li:nth-child(even) {
+			padding-left: 2rem;
+		}
+	}
+</style>

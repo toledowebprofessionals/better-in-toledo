@@ -1,0 +1,199 @@
+---
+interface HeadlineLine {
+	text: string;
+	accent?: boolean;
+}
+
+interface Action {
+	label: string;
+	href: string;
+	external?: boolean;
+}
+
+interface Props {
+	theme?: 'light' | 'dark';
+	label: string;
+	secondaryLabel?: string;
+	headlineLines: HeadlineLine[];
+	introduction: string;
+	actions?: Action[];
+}
+
+const {
+	theme = 'light',
+	label,
+	secondaryLabel,
+	headlineLines,
+	introduction,
+	actions = [],
+} = Astro.props;
+---
+
+<header class:list={['article-header', `article-header--${theme}`]}>
+	<div class="article-header__inner">
+		<div class="article-header__label">
+			<span>{label}</span>{secondaryLabel && <span>{secondaryLabel}</span>}
+		</div>
+		<h1>
+			{
+				headlineLines.map((line, index) => (
+					<>
+						{index > 0 && <br />}
+						<span class:list={{ accent: line.accent }}>{line.text}</span>
+					</>
+				))
+			}
+		</h1>
+		<div class="article-header__footer">
+			<p>{introduction}</p>
+			{
+				actions.length > 0 && (
+					<div class="article-header__actions">
+						{actions.map((action) => (
+							<a
+								href={action.href}
+								target={action.external ? '_blank' : undefined}
+								rel={action.external ? 'noopener noreferrer' : undefined}
+							>
+								<span class="button-label">{action.label}</span>
+								<span class="button-icon" aria-hidden="true">
+									↗
+								</span>
+							</a>
+						))}
+					</div>
+				)
+			}
+		</div>
+	</div>
+</header>
+
+<style>
+	.article-header {
+		padding: clamp(3rem, 7vw, 7rem) 1.25rem 0;
+	}
+	.article-header__inner {
+		width: 100%;
+		margin-inline: auto;
+	}
+	.article-header--light .article-header__inner {
+		max-width: 58rem;
+	}
+	.article-header--dark {
+		padding-bottom: clamp(3rem, 6vw, 6rem);
+		background: #161616;
+		color: #f4f1e8;
+	}
+	.article-header--dark .article-header__inner {
+		max-width: 1600px;
+	}
+	.article-header__label {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 0.35rem;
+		border-top: 1px solid currentColor;
+		padding-top: 0.75rem;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+	.article-header__label > span {
+		min-width: 0;
+		text-align: left;
+	}
+	.article-header--dark .article-header__label {
+		border-color: rgb(244 241 232 / 50%);
+		font-size: 0.65rem;
+	}
+	h1 {
+		font-family: var(--font-display);
+		font-weight: 800;
+		text-transform: uppercase;
+	}
+	.article-header--light h1 {
+		max-width: 8ch;
+		margin-block: clamp(3rem, 6vw, 6rem) clamp(1.75rem, 3vw, 3rem);
+		font-size: clamp(5rem, 11vw, 10rem);
+		line-height: 0.78;
+		letter-spacing: 0.01em;
+	}
+	.article-header--dark h1 {
+		margin-block: clamp(4rem, 8vw, 8rem);
+		font-size: clamp(5rem, 13vw, 13rem);
+		line-height: 0.82;
+		letter-spacing: -0.02em;
+	}
+	h1 .accent {
+		color: #d96832;
+	}
+	.article-header__footer > p {
+		max-width: 48rem;
+		font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+		line-height: 1.55;
+	}
+	.article-header--dark .article-header__footer {
+		display: grid;
+		gap: 2rem;
+		align-items: end;
+		border-top: 1px solid rgb(244 241 232 / 50%);
+		padding-top: clamp(1.5rem, 3vw, 2.5rem);
+	}
+	.article-header--dark .article-header__footer > p {
+		max-width: 42rem;
+		font-size: clamp(1.15rem, 2vw, 1.5rem);
+	}
+	.article-header__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 2.5rem;
+	}
+	.article-header--dark .article-header__actions {
+		margin-top: 0;
+	}
+	.article-header__actions a {
+		display: flex;
+		width: 100%;
+		max-width: 21rem;
+		align-items: center;
+		justify-content: space-between;
+		border: 1px solid currentColor;
+		padding: 0.95rem 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		transition:
+			background-color 0.2s,
+			color 0.2s;
+	}
+	.article-header--light .article-header__actions a:hover {
+		background: #161616;
+		color: #f4f1e8;
+	}
+	.article-header--dark .article-header__actions a:hover {
+		background: #f4f1e8;
+		color: #161616;
+	}
+	.article-header__actions span {
+		font-size: 1rem;
+		transition: transform 0.2s ease;
+	}
+	.article-header__actions a:hover span {
+		transform: translate(0.2rem, -0.2rem);
+	}
+	@media (min-width: 768px) {
+		.article-header {
+			padding-inline: 2rem;
+		}
+		.article-header__label {
+			display: flex;
+			justify-content: space-between;
+			gap: 2rem;
+		}
+		.article-header--dark .article-header__footer {
+			grid-template-columns: 1fr auto;
+		}
+	}
+</style>

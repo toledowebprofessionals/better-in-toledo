@@ -1,0 +1,104 @@
+---
+interface Download {
+	label: string;
+	href: string;
+	filename: string;
+}
+interface Props {
+	name: string;
+	description: string;
+	previewSrc: string;
+	previewAlt: string;
+	downloads: Download[];
+}
+const { name, description, previewSrc, previewAlt, downloads } = Astro.props;
+---
+
+<article class="graphic-specimen">
+	<div class="graphic-preview"><img src={previewSrc} alt={previewAlt} /></div>
+	<div class="graphic-details">
+		<div><h2 class="graphic-label">{name}</h2><p>{description}</p></div><div
+			class="graphic-downloads"
+		>
+			{
+				downloads.map((download) => (
+					<a href={download.href} download={download.filename}>
+						<span class="button-label">{download.label}</span>
+						<span class="button-icon" aria-hidden="true">
+							↓
+						</span>
+					</a>
+				))
+			}
+		</div>
+	</div>
+</article>
+
+<style>
+	.graphic-specimen {
+		margin-top: clamp(2rem, 3vw, 3rem);
+	}
+	.graphic-preview {
+		overflow: hidden;
+		padding: clamp(2rem, 6vw, 6rem);
+		background: #161616;
+	}
+	.graphic-preview img {
+		display: block;
+		width: 100%;
+		height: auto;
+		opacity: 0.28;
+		filter: invert(1);
+	}
+	.graphic-details {
+		display: grid;
+		gap: 2.5rem;
+		padding-top: clamp(2rem, 3vw, 3rem);
+	}
+	.graphic-label {
+		margin-bottom: 1.25rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+		font-weight: 700;
+		line-height: 0.95;
+		text-transform: uppercase;
+	}
+	.graphic-details p:not(.graphic-label) {
+		max-width: 44rem;
+		font-size: 1.05rem;
+		line-height: 1.65;
+	}
+	.graphic-downloads {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+	.graphic-downloads a {
+		display: flex;
+		width: 100%;
+		max-width: 20rem;
+		align-items: center;
+		justify-content: space-between;
+		border: 1px solid #161616;
+		padding: 0.9rem 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		transition:
+			background-color 0.2s,
+			color 0.2s;
+	}
+	.graphic-downloads a:hover {
+		background: #161616;
+		color: #f4f1e8;
+	}
+	@media (min-width: 900px) {
+		.graphic-details {
+			grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr);
+		}
+		.graphic-downloads {
+			align-items: flex-end;
+		}
+	}
+</style>

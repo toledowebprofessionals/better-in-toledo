@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleHeader from '../../components/article/ArticleHeader.astro';
+import ArticleContent from '../../components/article/ArticleContent.astro';
+import ArticleSection from '../../components/article/ArticleSection.astro';
+import ArticleFeatureGrid from '../../components/article/ArticleFeatureGrid.astro';
+import ArticleLinkList from '../../components/article/ArticleLinkList.astro';
+import ArticleCta from '../../components/article/ArticleCta.astro';
+
+const title = 'License & Public Domain Use • You Will Do Better in Toledo';
+const description =
+	'Learn about the CC0 public domain dedication covering the You Will Do Better in Toledo brand system, artwork, photography, and original resources.';
+
+const articleHeader = {
+	theme: 'dark' as const,
+	label: 'License / CC0 1.0 Universal, Public Domain',
+	secondaryLabel: 'No Copyright, No Attribution',
+	headlineLines: [
+		{ text: 'Open source.' },
+		{ text: 'Public domain.', accent: true },
+		{ text: 'CC0.' },
+	],
+	introduction:
+		'Use it. Change it. Print it. Sell it. Build on it. No permission or attribution required.',
+	actions: [
+		{
+			label: 'Read the full legal code',
+			href: 'https://creativecommons.org/publicdomain/zero/1.0/legalcode',
+			external: true,
+		},
+	],
+};
+
+const permissions = [
+	{
+		number: '01',
+		title: 'Use it',
+		description:
+			'Apply the mark and system to signs, shirts, websites, events, campaigns, products, or ideas we have not imagined yet.',
+	},
+	{
+		number: '02',
+		title: 'Change it',
+		description:
+			'Adapt, crop, recolor, rebuild, translate, combine, or remix the work for your own purpose.',
+	},
+	{
+		number: '03',
+		title: 'Share it',
+		description:
+			'Copy and redistribute the files in any medium or format, with or without modification.',
+	},
+	{
+		number: '04',
+		title: 'Build with it',
+		description:
+			'Use the system in commercial and noncommercial work without royalties or additional permission.',
+	},
+];
+
+const officialDocuments = [
+	{
+		label: 'CC0 1.0 deed',
+		href: 'https://creativecommons.org/publicdomain/zero/1.0/',
+		external: true,
+	},
+	{
+		label: 'CC0 1.0 legal code',
+		href: 'https://creativecommons.org/publicdomain/zero/1.0/legalcode',
+		external: true,
+	},
+];
+---
+
+<BaseLayout {title} {description}>
+	<main id="main-content" tabindex="-1">
+		<ArticleHeader {...articleHeader} />
+
+		<ArticleContent>
+			<ArticleSection
+				label="What CC0 means"
+				headline="A public resource"
+				headlineSuffix="should stay public."
+				size="large"
+				first
+			>
+				<p>
+					Except where otherwise credited, this website, the brand system, and the original assets
+					published with it are dedicated to the public domain under <a
+						href="https://creativecommons.org/publicdomain/zero/1.0/"
+						target="_blank"
+						rel="license noopener noreferrer">CC0 1.0 Universal</a
+					>. CC0 is a legal tool that allows a rights holder to waive copyright and related rights
+					to the fullest extent permitted by law.
+				</p>
+				<p>
+					That means you may copy, modify, distribute, display, perform, remix, and use the material
+					for personal or commercial purposes without asking permission. Attribution is appreciated
+					because it helps people find and improve the project, but CC0 does not require it.
+				</p>
+			</ArticleSection>
+
+			<ArticleSection
+				label="No trademark claimed"
+				headline="The mark belongs to all of us."
+				size="large"
+			>
+				<p>
+					This project does not claim trademark rights to “You Will Do Better in Toledo.” The
+					project’s original brand assets are dedicated to the public domain under CC0 1.0. You may
+					download, use, modify, reproduce, and sell them for any purpose, personal or commercial,
+					without permission or attribution.
+				</p>
+				<p>
+					This dedication applies only to rights the project can legally release. It does not waive
+					rights that may be held independently by third parties or imply endorsement by this
+					project, the City of Toledo, or anyone else.
+				</p>
+			</ArticleSection>
+
+			<ArticleSection label="What you can do" size="large">
+				<ArticleFeatureGrid items={permissions} />
+			</ArticleSection>
+
+			<ArticleSection label="Contributing" headline="Give it back to everyone." size="large">
+				<p>
+					Contributions to this project must be ready to join the public domain under CC0. Only
+					submit original work that you have the authority to dedicate, or material whose existing
+					terms are clearly compatible with inclusion.
+				</p>
+				<p>
+					By contributing original work, you agree that it may be released with the project under
+					CC0 1.0, to the extent legally possible. Do not contribute copyrighted images, writing,
+					fonts, artwork, or other material that you do not have the right to release. Clearly
+					identify any third-party source and its license.
+				</p>
+				<ArticleCta label="Read the contribution guidelines" href="/contribute/" />
+			</ArticleSection>
+
+			<ArticleSection
+				label="Important limits"
+				headline="Public domain does not erase every right."
+				size="large"
+			>
+				<p>
+					CC0 addresses copyright and related rights held by the person applying it. It does not
+					grant trademark or patent rights, override privacy or publicity rights, clear rights held
+					by other people, or imply that anyone endorses your use.
+				</p>
+				<p>
+					Third-party material is not covered when a separate credit or license is shown. Review
+					those notices before reuse. All material is provided as-is, without warranties. You remain
+					responsible for how you use it and for determining whether additional permissions are
+					needed.
+				</p>
+			</ArticleSection>
+
+			<ArticleSection label="Official documents">
+				<ArticleLinkList
+					links={officialDocuments}
+					note="This page is a plain-language license explanation, not legal advice. Please refer to the official CC0 legal code."
+				/>
+			</ArticleSection>
+		</ArticleContent>
+	</main>
+</BaseLayout>

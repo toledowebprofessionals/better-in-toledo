@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import structuralGridUrl from '../assets/images/graphic-elements/structural-grid-standalone.svg?url';
+
+const title = 'Page Not Found • You Will Do Better in Toledo';
+const description =
+	'The requested page could not be found. Explore the You Will Do Better in Toledo brand system, public domain photography, and design resources instead.';
+---
+
+<BaseLayout {title} {description}>
+	<main id="main-content" class="not-found" tabindex="-1">
+		<img class="not-found__grid" src={structuralGridUrl} alt="" />
+		<div class="not-found__frame" aria-hidden="true"></div>
+		<div class="not-found__content">
+			<h1>Wrong turn.</h1>
+			<p class="not-found__label">Error: 404 Not Found</p>
+			<p class="not-found__description">
+				The page you were looking for has moved, disappeared, or never existed. The work carries on.
+			</p>
+			<div class="not-found__actions">
+				<a href="/"
+					><span class="button-label">Return home</span>
+					<span class="button-icon" aria-hidden="true">↗</span></a
+				>
+				<a href="/brand-system/"
+					><span class="button-label">Browse the brand system</span>
+					<span class="button-icon" aria-hidden="true">↗</span></a
+				>
+			</div>
+		</div>
+	</main>
+</BaseLayout>
+
+<style>
+	:global(body) {
+		background: #161616;
+	}
+	.not-found {
+		position: relative;
+		display: flex;
+		min-height: min(54rem, calc(100vh - 4.5rem));
+		align-items: center;
+		overflow: hidden;
+		padding: clamp(3rem, 7vw, 7rem) clamp(1.25rem, 4vw, 4rem);
+		background: #161616;
+		color: #f4f1e8;
+	}
+	.not-found__grid {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: max(75rem, 110%);
+		max-width: none;
+		transform: translate(-50%, -50%);
+		filter: invert(1);
+		opacity: 0.055;
+		pointer-events: none;
+	}
+	.not-found__frame {
+		position: absolute;
+		inset: clamp(1.25rem, 3vw, 3rem);
+		border: 1px solid rgb(244 241 232 / 20%);
+		pointer-events: none;
+	}
+	.not-found__content {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 1600px;
+		margin-inline: auto;
+		padding-inline: clamp(1rem, 4vw, 4rem);
+	}
+	.not-found__label {
+		margin-top: clamp(2.5rem, 5vw, 5rem);
+		font-family: var(--font-mono);
+		font-size: 0.625rem;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #d96832;
+	}
+	h1 {
+		max-width: 12ch;
+		font-family: var(--font-display);
+		font-size: clamp(4rem, 11vw, 11rem);
+		font-weight: 800;
+		letter-spacing: 0.015em;
+		line-height: 0.78;
+		text-transform: uppercase;
+	}
+	.not-found__description {
+		max-width: 38rem;
+		margin-top: 0.75rem;
+		font-size: clamp(1rem, 1.5vw, 1.25rem);
+		line-height: 1.6;
+	}
+	.not-found__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 2rem;
+	}
+	.not-found__actions a {
+		display: flex;
+		min-width: min(100%, 16rem);
+		align-items: center;
+		justify-content: space-between;
+		gap: 2rem;
+		border: 1px solid rgb(244 241 232 / 60%);
+		padding: 0.9rem 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		transition:
+			border-color 0.2s,
+			background-color 0.2s,
+			color 0.2s;
+	}
+	.not-found__actions a:hover,
+	.not-found__actions a:focus-visible {
+		border-color: #d96832;
+		background: #d96832;
+		color: #161616;
+	}
+	@media (max-width: 640px) {
+		.not-found {
+			min-height: 42rem;
+		}
+		.not-found__actions {
+			flex-direction: column;
+		}
+		.not-found__actions a {
+			width: 100%;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.not-found__actions a {
+			transition: none;
+		}
+	}
+</style>

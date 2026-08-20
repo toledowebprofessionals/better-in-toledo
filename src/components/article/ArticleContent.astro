@@ -1,0 +1,21 @@
+<article class="article-content">
+	<slot />
+</article>
+
+<style>
+	:global(body) {
+		background: #faf9f5;
+	}
+
+	.article-content {
+		width: calc(100% - 2.5rem);
+		max-width: 58rem;
+		margin-inline: auto;
+		padding-block: clamp(4rem, 8vw, 8rem);
+	}
+	@media (min-width: 768px) {
+		.article-content {
+			width: calc(100% - 4rem);
+		}
+	}
+</style>
