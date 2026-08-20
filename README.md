@@ -10,12 +10,12 @@ Use it. Change it. Print it. Sell it. Build on it. No permission or attribution 
 
 - Rebuilt logo artwork in multiple configurations
 - Brand colors, typography guidance, and structural graphics
-- Downloadable public domain archival photography, unless otherwise noted
+- Downloadable public domain photography, unless otherwise noted
 - Historical context for the original Toledo sign
 - Contribution and licensing guidance
 - The source for the public website
 
-The project does not claim trademark rights to “You Will Do Better in Toledo.” The goal is straightforward public use, not control.
+The project does not claim trademark rights to “You Will Do Better in Toledo.” The goal is public use, not control.
 
 ## Design direction
 
