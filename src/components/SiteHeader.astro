@@ -2,7 +2,7 @@
 import headerLogoUrl from '../assets/images/logos/logo-frame-white.svg?url';
 
 const navigation = [
-	{ title: 'Brand system', href: '/brand-system/' },
+	{ title: 'Brand system', href: '/brand-system/brand-mark/' },
 	{ title: 'Contribute', href: '/contribute/' },
 	{ title: 'Photography', href: '/photography/' },
 	{ title: 'License', href: '/license/' },
@@ -10,7 +10,9 @@ const navigation = [
 
 const currentPath = Astro.url.pathname;
 const isActive = (href: string) =>
-	href === '/brand-system/' ? currentPath.startsWith('/brand-system/') : currentPath === href;
+	href === '/brand-system/brand-mark/'
+		? currentPath.startsWith('/brand-system/')
+		: currentPath === href;
 ---
 
 <header class="relative z-20 bg-sign-black px-5 text-paper-white md:px-8">
