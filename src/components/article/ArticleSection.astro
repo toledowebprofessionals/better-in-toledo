@@ -82,12 +82,14 @@ const {
 	:global(.article-section__body > p + p) {
 		margin-top: 1.25rem;
 	}
-	:global(.article-section__body a) {
+	:global(.article-section__body > p a),
+	:global(.article-section__body li a) {
 		text-decoration: underline;
 		text-decoration-color: #d96832;
 		text-underline-offset: 0.2em;
 	}
-	:global(.article-section__body a:hover) {
+	:global(.article-section__body > p a:hover),
+	:global(.article-section__body li a:hover) {
 		color: #204e63;
 	}
 	:global(.article-section__body :is(ul, ol)) {
