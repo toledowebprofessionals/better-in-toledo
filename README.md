@@ -10,7 +10,7 @@ Use it. Change it. Print it. Sell it. Build on it. No permission or attribution 
 
 - Rebuilt logo artwork in multiple configurations
 - Brand colors, typography guidance, and structural graphics
-- Downloadable public-domain archival photography
+- Downloadable public domain archival photography, unless otherwise noted
 - Historical context for the original Toledo sign
 - Contribution and licensing guidance
 - The source for the public website
